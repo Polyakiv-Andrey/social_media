@@ -3,7 +3,9 @@ from django.urls import path
 from apps.authentication.views import (
     RegistrationSendOTCCodeAPIView,
     RegistrationValidateOTCCodeAPIView,
-    RegistrationCreateUserCodeAPIView, UserLoginApiView, UserLogoutApiView,
+    RegistrationCreateUserCodeAPIView,
+    UserLoginApiView,
+    UserLogoutApiView,
 )
 
 urlpatterns = [
