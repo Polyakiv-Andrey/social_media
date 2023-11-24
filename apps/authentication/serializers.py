@@ -2,7 +2,7 @@ import random
 import string
 from datetime import datetime, timedelta
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.password_validation import validate_password
 from django.utils import timezone
 from rest_framework import serializers
@@ -86,6 +86,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(email=validated_data["email"], password=validated_data["password"])
+        login(self.context["request"], user)
         refresh = RefreshToken.for_user(user)
         return {
             'access_token': str(refresh.access_token),

@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, logout
+from django.contrib.auth import get_user_model, logout, login
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -51,6 +51,7 @@ class UserLoginApiView(generics.CreateAPIView):
                 {'detail': "No active account found with the given credentials"},
                 status=status.HTTP_401_UNAUTHORIZED
             )
+        login(request, user)
         refresh = RefreshToken.for_user(user)
         return Response(
             {
