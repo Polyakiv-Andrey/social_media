@@ -1,3 +1,4 @@
+from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
@@ -14,6 +15,7 @@ class User(AbstractBaseUser):
     date_updated = models.DateTimeField(auto_now_add=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    time_last_action = models.DateTimeField(default=timezone.now)
     objects = UserManager()
     USERNAME_FIELD = 'email'
 
