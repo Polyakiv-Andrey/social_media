@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'apps.api',
     'apps.authentication',
     'apps.post',
+    'apps.analytics'
 ]
 
 MIDDLEWARE = [
