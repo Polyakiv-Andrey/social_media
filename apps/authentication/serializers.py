@@ -91,3 +91,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
             'access_token': str(refresh.access_token),
             'refresh_token': str(refresh),
         }
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(max_length=100, required=True, write_only=True)
+    password = serializers.CharField(max_length=100, required=True, write_only=True)
