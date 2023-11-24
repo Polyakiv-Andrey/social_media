@@ -28,3 +28,14 @@ class PostListRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = "__all__"
+
+
+class PostLikeDislikeSerializer(serializers.Serializer):
+    post_id = serializers.IntegerField()
+
+    def validate_post_id(self, post_id):
+        try:
+            post = Post.objects.get(id=post_id)
+            return post_id
+        except Post.DoesNotExist:
+            raise serializers.ValidationError("Post dose not exist!")
